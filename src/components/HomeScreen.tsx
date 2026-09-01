@@ -229,9 +229,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onEnterMenu }) => {
       </div>
 
       {/* Decorative Modern-Gothic Framing Accents (Corner Details) */}
-      <div className="absolute top-5 right-6 text-xs font-mono text-[#1e1b13]/40 select-none pointer-events-none hidden sm:block font-bold">
-        EST. 2024 +
-      </div>
       <div className="absolute bottom-5 right-6 text-xs font-mono text-[#1e1b13]/40 select-none pointer-events-none hidden sm:block font-bold">
         MENU DIGITAL +
       </div>
@@ -252,7 +249,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onEnterMenu }) => {
             onClick={handleMainMenuClick}
           >
             <img
-              src="/logo.png"
+              src="./logo.png"
               alt="The Creep Zone Logo"
               referrerPolicy="no-referrer"
               className="w-[290px] sm:w-[440px] md:w-[520px] max-w-full select-none hover:scale-[1.03] transition-transform duration-300 drop-shadow-[0_18px_30px_rgba(20,46,162,0.3)] filter"
