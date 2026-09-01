@@ -1,0 +1,6 @@
+{
+  "name": "The Creep Zone",
+  "description": "Menú interactivo y cafetería temática spooky-cute con crepas, waffles, frappés y pócimas monstruosas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
