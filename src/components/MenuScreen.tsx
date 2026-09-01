@@ -91,7 +91,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
             MENÚ
           </h1>
           <img 
-            src="/logo.png" 
+            src="./logo.png" 
             alt="The Creep Zone" 
             className="h-8 sm:h-9 w-auto object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" 
           />
@@ -441,7 +441,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
           {/* Centered Logo (Removed text 'The Creep Zone') */}
           <div className="flex justify-center">
             <img 
-              src="/logo.png" 
+              src="./logo.png" 
               alt="The Creep Zone" 
               className="h-10 sm:h-14 w-auto object-contain mx-auto filter drop-shadow-[0_4px_10px_rgba(69,30,187,0.4)]" 
             />
