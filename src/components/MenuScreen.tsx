@@ -5,7 +5,6 @@ import {
   ArrowLeft, 
   Sparkles, 
   Clock, 
-  ChevronRight,
   PlusCircle,
   CupSoda,
   Cookie
@@ -15,6 +14,16 @@ interface MenuScreenProps {
   initialCategory: CategoryId | null;
   onBackToHome: () => void;
 }
+
+// Themed emoji per category, replaces the repeated arrow-in-circle icon on directory cards
+const CATEGORY_EMOJI: Record<string, string> = {
+  crepas: '🥞',
+  waffles: '🧇',
+  frappes: '🥤',
+  malteadas: '🍦',
+  cafes: '☕',
+  extras: '🍯',
+};
 
 export const MenuScreen: React.FC<MenuScreenProps> = ({
   initialCategory,
@@ -108,11 +117,15 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
           <section className="space-y-6">
             {/* Simple Category Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-              {directoryCategories.map((cat) => (
+              {directoryCategories.map((cat, index) => (
                 <div
                   key={cat.id}
                   onClick={() => handleSelectCategory(cat.id as CategoryId)}
-                  className="group bg-white border-3 border-[#1e1b13] rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#1e1b13] hover:shadow-[7px_7px_0px_#451ebb] transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5"
+                  style={{
+                    animationDelay: `${index * 70}ms`,
+                    transform: index % 2 === 0 ? 'rotate(-0.6deg)' : 'rotate(0.6deg)',
+                  }}
+                  className="animate-fade-slide-up group bg-white border-3 border-[#1e1b13] rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#1e1b13] hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 hover:rotate-0 active:translate-x-[3px] active:translate-y-[3px] active:rotate-0"
                 >
                   <div className="space-y-1 flex-1">
                     <h3 className="font-headline font-black text-xl sm:text-2xl text-[#1e1b13] group-hover:text-[#451ebb] transition-colors uppercase tracking-tight">
@@ -123,8 +136,8 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                     </p>
                   </div>
 
-                  <div className="w-10 h-10 rounded-full bg-[#fff8ef] border-2 border-[#1e1b13] flex items-center justify-center shrink-0 group-hover:bg-[#451ebb] group-hover:text-white transition-colors">
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                  <div className="w-11 h-11 rounded-full bg-[#fff8ef] border-2 border-[#1e1b13] flex items-center justify-center shrink-0 text-xl group-hover:bg-[#451ebb] group-hover:scale-105 transition-all">
+                    <span aria-hidden="true">{CATEGORY_EMOJI[cat.id] ?? '✨'}</span>
                   </div>
                 </div>
               ))}
@@ -140,7 +153,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
               <div>
                 <button
                   onClick={handleBackToCategories}
-                  className="inline-flex items-center gap-1.5 font-space font-bold text-xs text-[#bb0013] hover:text-[#451ebb] hover:underline mb-2 cursor-pointer transition-colors"
+                  className="inline-flex items-center gap-1.5 font-space font-bold text-xs text-[#bb0013] hover:text-[#451ebb] hover:underline active:text-[#451ebb] active:underline mb-2 cursor-pointer transition-colors"
                 >
                   <ArrowLeft className="w-3.5 h-3.5 stroke-[3]" />
                   <span>Volver a las categorías</span>
@@ -190,18 +203,19 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
             {/* Regular Menu Items Grid */}
             {selectedCategory !== 'extras' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {categoryItems.map((item) => {
+                {categoryItems.map((item, index) => {
                   const isCustomBuild = item.id.includes('arma-tu');
                   const isFrappe = item.category === 'frappes';
 
                   return (
                     <article
                       key={item.id}
+                      style={{ animationDelay: `${index * 60}ms` }}
                       className={`${
                         isCustomBuild 
                           ? 'md:col-span-2 bg-[#fffdfa] border-4 border-[#451ebb] shadow-[7px_7px_0px_#1e1b13]' 
                           : 'bg-white border-3 border-[#1e1b13] shadow-[5px_5px_0px_#1e1b13]'
-                      } rounded-2xl p-5 sm:p-6 hover:shadow-[7px_7px_0px_#451ebb] transition-all duration-200 flex flex-col justify-between group hover:-translate-y-0.5`}
+                      } animate-fade-slide-up rounded-2xl p-5 sm:p-6 hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] active:translate-x-[3px] active:translate-y-[3px] transition-all duration-200 flex flex-col justify-between group hover:-translate-y-0.5`}
                     >
                       <div>
                         {/* Top Row: Title, Badges & Price */}
@@ -219,7 +233,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
 
                             <h3 className="font-headline font-black text-xl sm:text-2xl text-[#1e1b13] group-hover:text-[#451ebb] transition-colors leading-tight flex items-center gap-2">
                               {item.name}
-                              {isCustomBuild && <Sparkles className="w-5 h-5 text-[#ffd700] shrink-0" />}
+                              {isCustomBuild && <Sparkles className="w-5 h-5 text-[#ffd700] shrink-0 animate-soft-pulse" />}
                             </h3>
                           </div>
 
