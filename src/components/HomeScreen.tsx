@@ -44,14 +44,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onEnterMenu }) => {
         <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full bg-[#bb0013] opacity-[0.06] blur-3xl translate-x-1/4 translate-y-1/4" />
       </div>
 
-      {/* Decorative Modern-Gothic Framing Accents (Corner Details) */}
-      <div className="absolute top-5 left-6 text-xs font-mono text-[#1e1b13]/40 select-none pointer-events-none hidden sm:block font-bold">
-        SPOOKY-CUTE +
-      </div>
-      <div className="absolute bottom-5 right-6 text-xs font-mono text-[#1e1b13]/40 select-none pointer-events-none hidden sm:block font-bold">
-        MENU DIGITAL +
-      </div>
-
       {/* Center Main Stage: Logo with dynamic 3D tilt, no soft glow halo */}
       <main className="relative z-20 flex flex-col items-center justify-center text-center px-4 my-auto w-full max-w-5xl mx-auto">
         <div className="relative flex flex-col items-center justify-center group">
