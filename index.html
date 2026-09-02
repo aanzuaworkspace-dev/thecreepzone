@@ -1,162 +1,17 @@
-@import "tailwindcss";
-
-@layer base {
-  body {
-    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-  
-  h1, h2, h3, h4, .font-headline {
-    font-family: 'Anybody', sans-serif;
-  }
-  
-  .font-space, .font-label {
-    font-family: 'Space Grotesk', monospace, sans-serif;
-  }
-}
-
-/* Custom Spooky-Brutalist Classes */
-.splatter-bg {
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 20C40 10 60 10 70 20C80 30 80 50 70 60C60 70 40 70 30 60C20 50 20 30 30 20Z' fill='%23bb0013' opacity='0.05'/%3E%3Ccircle cx='85' cy='85' r='6' fill='%23451ebb' opacity='0.04'/%3E%3Ccircle cx='15' cy='75' r='4' fill='%23bb0013' opacity='0.04'/%3E%3C/svg%3E");
-}
-
-.sticker-card {
-  border: 3px solid #1e1b13;
-  box-shadow: 6px 6px 0px 0px #451ebb;
-  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.sticker-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0px 0px #bb0013;
-}
-
-.sticker-card-secondary {
-  border: 3px solid #1e1b13;
-  box-shadow: 6px 6px 0px 0px #bb0013;
-  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.sticker-card-secondary:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0px 0px #451ebb;
-}
-
-.btn-brutal {
-  border: 2px solid #1e1b13;
-  box-shadow: 4px 4px 0px 0px #1e1b13;
-  transition: all 0.15s ease-in-out;
-  cursor: pointer;
-}
-
-.btn-brutal:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px 0px #1e1b13;
-}
-
-.btn-brutal:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px #1e1b13;
-}
-
-.btn-brutal-primary {
-  background-color: #451ebb;
-  color: #ffffff;
-  border: 2px solid #1e1b13;
-  box-shadow: 4px 4px 0px 0px #1e1b13;
-  transition: all 0.15s ease-in-out;
-}
-
-.btn-brutal-primary:hover {
-  background-color: #5d3fd3;
-  transform: translate(-1px, -1px);
-  box-shadow: 6px 6px 0px 0px #bb0013;
-}
-
-.btn-brutal-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px #1e1b13;
-}
-
-.btn-brutal-secondary {
-  background-color: #bb0013;
-  color: #ffffff;
-  border: 2px solid #1e1b13;
-  box-shadow: 4px 4px 0px 0px #1e1b13;
-  transition: all 0.15s ease-in-out;
-}
-
-.btn-brutal-secondary:hover {
-  background-color: #e51a22;
-  transform: translate(-1px, -1px);
-  box-shadow: 6px 6px 0px 0px #451ebb;
-}
-
-.btn-brutal-secondary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px #1e1b13;
-}
-
-/* Float animations */
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(3deg); }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 10px rgba(93, 63, 211, 0.4)); }
-  50% { opacity: 1; filter: drop-shadow(0 0 25px rgba(187, 0, 19, 0.6)); }
-}
-
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes softPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.035); }
-}
-
-.animate-float-slow {
-  animation: floatSlow 4s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-.animate-fade-slide-up {
-  animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-soft-pulse {
-  animation: softPulse 2.6s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-slide-up,
-  .animate-soft-pulse,
-  .animate-float-slow,
-  .animate-pulse-glow {
-    animation: none;
-  }
-}
-
-
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #f5edde;
-  border-left: 2px solid #1e1b13;
-}
-::-webkit-scrollbar-thumb {
-  background: #451ebb;
-  border: 2px solid #1e1b13;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #bb0013;
-}
+<!doctype html>
+<html lang="es" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Creep Zone - Menú</title>
+    <meta name="description" content="Menú y cafetería temática spooky-cute con crepas, waffles, frappés y pócimas monstruosas." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./logo.png">
+  </head>
+  <body class="bg-[#fff8ef] text-[#1e1b13] antialiased selection:bg-[#5d3fd3] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
