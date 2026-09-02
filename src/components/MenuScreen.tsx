@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { CategoryId, MenuItem } from '../types';
 import { CATEGORIES, MENU_ITEMS, EXTRAS_LIST, FRAPPE_SIZES, CAFETERIA_INFO } from '../data/menuData';
 import { 
@@ -100,20 +101,30 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-8 py-8">
-        
+        <AnimatePresence mode="wait">
         {/* ======================================================== */}
         {/* CASE 1: CATEGORIES LIST (Primary View)                  */}
         {/* ======================================================== */}
         {selectedCategory === null ? (
-          <section className="space-y-6">
+          <motion.section
+            key="categories-list"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
+            className="space-y-6"
+          >
             {/* Simple Category Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {directoryCategories.map((cat, index) => (
-                <div
+                <motion.div
                   key={cat.id}
                   onClick={() => handleSelectCategory(cat.id as CategoryId)}
-                  style={{ animationDelay: `${index * 70}ms` }}
-                  className="animate-fade-slide-up group bg-white border-3 border-[#1e1b13] rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#1e1b13] hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 active:translate-x-[3px] active:translate-y-[3px]"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: (index % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="group bg-white border-3 border-[#1e1b13] rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#1e1b13] hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] transition-shadow duration-200 cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 active:translate-x-[3px] active:translate-y-[3px]"
                 >
                   <div className="space-y-1 flex-1">
                     <h3 className="font-headline font-black text-xl sm:text-2xl text-[#1e1b13] group-hover:text-[#451ebb] transition-colors uppercase tracking-tight">
@@ -127,15 +138,22 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                   <div className="w-10 h-10 rounded-full bg-[#fff8ef] border-2 border-[#1e1b13] flex items-center justify-center shrink-0 group-hover:bg-[#451ebb] group-hover:text-white transition-colors">
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </section>
+          </motion.section>
         ) : (
           /* ======================================================== */
           /* CASE 2: SELECTED CATEGORY DETAIL VIEW                   */
           /* ======================================================== */
-          <section className="space-y-8">
+          <motion.section
+            key={`category-${selectedCategory}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
+            className="space-y-8"
+          >
             {/* Category Header Banner with Back to Categories button */}
             <div className="border-b-3 border-[#1e1b13] pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
@@ -196,14 +214,17 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                   const isFrappe = item.category === 'frappes';
 
                   return (
-                    <article
+                    <motion.article
                       key={item.id}
-                      style={{ animationDelay: `${index * 60}ms` }}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.15 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className={`${
                         isCustomBuild 
                           ? 'md:col-span-2 bg-[#fffdfa] border-4 border-[#451ebb] shadow-[7px_7px_0px_#1e1b13]' 
                           : 'bg-white border-3 border-[#1e1b13] shadow-[5px_5px_0px_#1e1b13]'
-                      } animate-fade-slide-up rounded-2xl p-5 sm:p-6 hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] active:translate-x-[3px] active:translate-y-[3px] transition-all duration-200 flex flex-col justify-between group hover:-translate-y-0.5`}
+                      } rounded-2xl p-5 sm:p-6 hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] active:translate-x-[3px] active:translate-y-[3px] transition-shadow duration-200 flex flex-col justify-between group hover:-translate-y-0.5`}
                     >
                       <div>
                         {/* Top Row: Title, Badges & Price */}
@@ -316,7 +337,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                           )}
                         </div>
                       </div>
-                    </article>
+                    </motion.article>
                   );
                 })}
               </div>
@@ -433,8 +454,9 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                 <span>Volver a Categorías</span>
               </button>
             </div>
-          </section>
+          </motion.section>
         )}
+        </AnimatePresence>
       </main>
 
       {/* Footer Info */}
