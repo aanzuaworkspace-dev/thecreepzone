@@ -5,6 +5,7 @@ import {
   ArrowLeft, 
   Sparkles, 
   Clock, 
+  ChevronRight,
   PlusCircle,
   CupSoda,
   Cookie
@@ -14,16 +15,6 @@ interface MenuScreenProps {
   initialCategory: CategoryId | null;
   onBackToHome: () => void;
 }
-
-// Themed emoji per category, replaces the repeated arrow-in-circle icon on directory cards
-const CATEGORY_EMOJI: Record<string, string> = {
-  crepas: '🥞',
-  waffles: '🧇',
-  frappes: '🥤',
-  malteadas: '🍦',
-  cafes: '☕',
-  extras: '🍯',
-};
 
 export const MenuScreen: React.FC<MenuScreenProps> = ({
   initialCategory,
@@ -121,11 +112,8 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                 <div
                   key={cat.id}
                   onClick={() => handleSelectCategory(cat.id as CategoryId)}
-                  style={{
-                    animationDelay: `${index * 70}ms`,
-                    transform: index % 2 === 0 ? 'rotate(-0.6deg)' : 'rotate(0.6deg)',
-                  }}
-                  className="animate-fade-slide-up group bg-white border-3 border-[#1e1b13] rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#1e1b13] hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 hover:rotate-0 active:translate-x-[3px] active:translate-y-[3px] active:rotate-0"
+                  style={{ animationDelay: `${index * 70}ms` }}
+                  className="animate-fade-slide-up group bg-white border-3 border-[#1e1b13] rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#1e1b13] hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 active:translate-x-[3px] active:translate-y-[3px]"
                 >
                   <div className="space-y-1 flex-1">
                     <h3 className="font-headline font-black text-xl sm:text-2xl text-[#1e1b13] group-hover:text-[#451ebb] transition-colors uppercase tracking-tight">
@@ -136,8 +124,8 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                     </p>
                   </div>
 
-                  <div className="w-11 h-11 rounded-full bg-[#fff8ef] border-2 border-[#1e1b13] flex items-center justify-center shrink-0 text-xl group-hover:bg-[#451ebb] group-hover:scale-105 transition-all">
-                    <span aria-hidden="true">{CATEGORY_EMOJI[cat.id] ?? '✨'}</span>
+                  <div className="w-10 h-10 rounded-full bg-[#fff8ef] border-2 border-[#1e1b13] flex items-center justify-center shrink-0 group-hover:bg-[#451ebb] group-hover:text-white transition-colors">
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
               ))}
@@ -233,7 +221,7 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
 
                             <h3 className="font-headline font-black text-xl sm:text-2xl text-[#1e1b13] group-hover:text-[#451ebb] transition-colors leading-tight flex items-center gap-2">
                               {item.name}
-                              {isCustomBuild && <Sparkles className="w-5 h-5 text-[#ffd700] shrink-0 animate-soft-pulse" />}
+                              {isCustomBuild && <Sparkles className="w-5 h-5 text-[#ffd700] shrink-0" />}
                             </h3>
                           </div>
 
