@@ -6,6 +6,7 @@ export interface MenuItem {
   category: CategoryId;
   price: number;
   description: string;
+  image?: string;
   badge?: string;
   badgeColor?: 'tertiary' | 'primary' | 'secondary' | 'purple' | 'green';
   spookyLevel?: 1 | 2 | 3 | 4 | 5;
