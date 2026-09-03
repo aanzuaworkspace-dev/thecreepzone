@@ -224,9 +224,24 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                         isCustomBuild 
                           ? 'md:col-span-2 bg-[#fffdfa] border-4 border-[#451ebb] shadow-[7px_7px_0px_#1e1b13]' 
                           : 'bg-white border-3 border-[#1e1b13] shadow-[5px_5px_0px_#1e1b13]'
-                      } rounded-2xl p-5 sm:p-6 hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] active:translate-x-[3px] active:translate-y-[3px] transition-shadow duration-200 flex flex-col justify-between group hover:-translate-y-0.5`}
+                      } rounded-2xl overflow-hidden hover:shadow-[7px_7px_0px_#451ebb] active:shadow-[2px_2px_0px_#1e1b13] active:translate-x-[3px] active:translate-y-[3px] transition-shadow duration-200 flex flex-col justify-between group hover:-translate-y-0.5`}
                     >
-                      <div>
+                      {item.image && (
+                        <div className="relative w-full aspect-[4/3] overflow-hidden border-b-3 border-[#1e1b13]">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            loading="lazy"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          {item.price > 0 && (
+                            <div className="absolute top-3 right-3 bg-[#1e1b13] text-[#ffd700] border-2 border-[#ffd700]/70 font-mono font-black text-lg sm:text-xl px-3 py-1 rounded-xl shadow-[3px_3px_0px_#bb0013]">
+                              ${item.price}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      <div className={item.image ? 'p-5 sm:p-6' : 'p-5 sm:p-6 h-full'}>
                         {/* Top Row: Title, Badges & Price */}
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <div className="space-y-1">
@@ -246,8 +261,8 @@ export const MenuScreen: React.FC<MenuScreenProps> = ({
                             </h3>
                           </div>
 
-                          {/* Price Pill */}
-                          {item.price > 0 && (
+                          {/* Price Pill (only shown here if there's no photo showing it already) */}
+                          {item.price > 0 && !item.image && (
                             <div className="bg-[#1e1b13] text-[#ffd700] border-2 border-[#1e1b13] font-mono font-black text-xl sm:text-2xl px-3.5 py-1 rounded-xl shadow-[3px_3px_0px_#bb0013] shrink-0 text-right">
                               ${item.price}
                             </div>
